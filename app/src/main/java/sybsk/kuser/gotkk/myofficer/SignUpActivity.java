@@ -28,7 +28,7 @@ public class SignUpActivity extends AppCompatActivity {
     private Button button;
     private String nameString, userString, passwordString, pathImageString, nameImageString;
     private Uri uri;
-    private String tag = "Message...";
+    private String tag = "23JulyV1";
     private boolean aBoolean = true;
 
 
@@ -85,7 +85,7 @@ public class SignUpActivity extends AppCompatActivity {
     private void upLoadString() {
         try {
             AddUserToServer addUserToServer = new AddUserToServer(SignUpActivity.this, nameString
-                    , userString, passwordString, "ftp://ftp.swiftcodingthai.com/image" + nameImageString);
+                    , userString, passwordString, "http://swiftcodingthai.com/image/rm4it/" + nameImageString);
             addUserToServer.execute();
             if (Boolean.parseBoolean(addUserToServer.get())) {
                 finish();
@@ -130,8 +130,8 @@ public class SignUpActivity extends AppCompatActivity {
             showImage(uri);
 
             pathImageString = findPathImage(uri);
-            nameImageString = pathImageString.substring(pathImageString.lastIndexOf("/"));
-            Log.d(tag, "path ==> " + pathImageString);
+          //  nameImageString = pathImageString.substring(pathImageString.lastIndexOf("/"));
+            Log.d("23JulyV1", "path ==> " + pathImageString);
             Log.d(tag, "name ==> " + nameImageString);
         }
     }
@@ -143,7 +143,9 @@ public class SignUpActivity extends AppCompatActivity {
         if (cursor != null) {
             cursor.moveToFirst();       //moveToFirst() คือการประมวนผลจากบนลงล่าง
             int i = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            Log.d(tag, "i ==> " + i);
             result = cursor.getString(i);
+            Log.d(tag, "Result ==> " + result);
         } else {
             result = uri.getPath(); //กรณีมีรูปเดียว
         }
